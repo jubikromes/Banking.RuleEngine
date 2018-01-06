@@ -1,0 +1,140 @@
+﻿@model BankingRules.Data.Message.RuleMessage<List<BankingRules.Models.BankingRuleDetails>>
+@{
+    ViewBag.Title = "ConfigureRule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Configure Rule</h2>
+
+<p>All rules created and configured </p>
+
+<div class="container">
+
+    <a class="btn btn-primary" href="@Url.Content("~/rule/addruledetail?bankingRuleId=" + TempData["RuleId"])">Add Detail</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>L. O.</th>
+                <th>L P V</th>
+                <th>Operand</th>
+                <th>R. O</th>
+                <th>R. P. V</th>
+                <th>Chained</th>
+                <th>Order</th>
+                <th>Rule Type</th>
+                <th>E. R. T</th>
+                <th>E.R</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.Result)
+            {
+                <tr>
+                    <td>@detail.LeftOperator</td>
+                    <td>@detail.LeftParameterString</td>
+                    <td> @detail.Operand </td>
+                    <td>@detail.RightOperator</td>
+                    <td>@detail.RightParamererString</td>
+                    <td>@detail.IsChained</td>
+                    <td>@detail.Order</td>
+                    <th>@detail.RuleType</th>
+                    <th>@detail.ExpectedResultType</th>
+                    <th> @detail.ExpectedResult </th>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                                Action
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" href="@Url.Content("~/rule/editruledetail?id=" + detail.Id)">Edit</a></li>
+                                <li role="presentation"><a role="menuitem" href="#">Delete</a></li>
+                                <li role="presentation" class="divider"></li>
+                            </ul>
+                        </div>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Left Operator</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Left Operator">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Right Operator</label>
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Right Operator">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Left Parameter Operator</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Left Parameter Operator">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Right Parameter Operator</label>
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Right Parameter Operator">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Expected Result</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Expected Result">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Is Chained?</label>
+                            <select class="form-control" id="inputEmail4" placeholder="Chained">
+                                <option value="0"> FALSE </option>
+                                <option value="1"> TRUE </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Operand</label>
+                            <select class="form-control" id="inputEmail4" placeholder="Email">
+                                <option value="greaterthan"> > </option>
+                                <option value="greaterthanorequalto"> >= </option>
+                                <option value="add"> + </option>
+                                <option value="subtract"> - </option>
+                                <option value="notequal"> != </option>
+                                <option value="and"> & </option>
+                                <option value="lessthan"> < </option>
+                                <option value="equals"> = </option>
+                                <option value="lessthanorequalto"><=</option>
+                                <option value="or"> | </option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Order</label>
+                            <input type="number" class="form-control" id="inputPassword4" placeholder="Rule Detail Order">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Detail</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

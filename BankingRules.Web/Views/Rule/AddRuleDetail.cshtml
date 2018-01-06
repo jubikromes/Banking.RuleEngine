@@ -1,0 +1,87 @@
+﻿@model BankingRules.Data.Message.RuleMessage<BankingRules.Web.ViewModels.AddRuleDetailViewModel>
+
+@{
+    ViewBag.Title = "AddRuleDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Rule Detail</h2>
+
+<form method="post" action="@Url.Action("addruledetail","rule")">
+    <input name="BankingRuleId" type="hidden" value="@Model.Result.BankingRuleId" />
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Left Operator</label>
+            <input type="text" class="form-control" id="leftOperatorId" placeholder="Left Operator" name="LeftOperator" value="@Model.Result.LeftOperator">
+            <input type="checkbox" id="leftcheckBoxAdd"> Select left Operator
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Right Operator</label>
+            <input type="text" class="form-control" id="rightOperatorId" placeholder="Right Operator" name="RightOperator" value="@Model.Result.RightOperator">
+            <input type="checkbox" id="rightcheckBoxAdd"> Select Right Operator
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Left Parameter Operator</label>
+            <input type="text" class="form-control"
+                   placeholder="Left Parameter Operator" id="leftOperatorParamId" name="LeftParameterString" value="@Model.Result.LeftParameterString">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Right Parameter Operator</label>
+            <input type="text" class="form-control" id="rightOperatorParamId" placeholder="Right Parameter Operator" name="RightParamererString" value="@Model.Result.RightParamererString">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Rule Type</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Rule Type" name="RuleType" value="@Model.Result.RuleType">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Expected Result Type</label>
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Expected Result Type" name="ExpectedResultType" value="@Model.Result.ExpectedResultType">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Expected Result</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Expected Result" name="ExpectedResult" value="@Model.Result.ExpectedResult">
+            <input type="checkbox" name="ExpectsResult"> Expects Result
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Order</label>
+            <input type="number" class="form-control" id="inputPassword4" placeholder="Rule Detail Order" name="Order" value="@Model.Result.Order">
+            <input type="checkbox" name="CanBeTerminated"> Can Be Terminated
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Operand</label>
+            <select class="form-control" id="inputEmail4" placeholder="Email" name="Operand">
+                <option value="greaterthan"> > </option>
+                <option value="greaterthanorequalto"> >= </option>
+                <option value="add"> + </option>
+                <option value="subtract"> - </option>
+                <option value="notequal"> != </option>
+                <option value="and"> & </option>
+                <option value="lessthan"> < </option>
+                <option value="equals"> = </option>
+                <option value="lessthanorequalto"><=</option>
+                <option value="or"> | </option>
+            </select>
+            <input type="checkbox" name="IsChained"> Is Chained
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary">Add Detail</button>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+
+<script src="~/Scripts/pages/rule/addruledetail.js"></script>
+    }

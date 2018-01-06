@@ -1,0 +1,50 @@
+﻿@model BankingRules.Data.Message.RuleMessage<List<BankingRules.Models.BankingRule>>
+   
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Rules</h2>
+
+<div class="container">
+    <h2>Contextual Classes</h2>
+    <p>All rules created and configured </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Rule Score</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rule in Model.Result)
+            {
+                <tr>
+                    <td>@rule.Name</td>
+                    <td>@rule.Description</td>
+                    <td>@rule.RuleScore</td>
+                    <td>@rule.CreatedDate</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                                Action
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" href="#">Edit Rule</a></li>
+                                <li role="presentation"><a role="menuitem" href="@Url.Content("~/Rule/ConfigureRule?id=" + rule.Id)">Configure Rule</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" href="#">Delete</a></li>
+
+                            </ul>
+                        </div>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
